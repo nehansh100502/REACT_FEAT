@@ -1,25 +1,29 @@
 {
-    "users": [
-        {
-            "name": "",
-            "email": "nehansh100502@gmail.com",
-            "password": "snsd",
-            "username": "Neha Singh",
-            "id": "nzgMRrGnwqI"
-        },
-        {
-            "name": "",
-            "email": "nehansh100502@gmail.com",
-            "password": "snsd",
-            "username": "Neha Singh",
-            "id": "rtv48p1-j8A"
-        },
-        {
-            "username": "",
-            "email": "",
-            "password": "",
-            "undefined": "snsd",
-            "id": "hyK4N3iotD8"
-        }
-    ]
+  "users": [
+    {
+      "username": "moti.vationalquotes675",
+      "email": "nehansh100502@gmail.com",
+      "password": "snsd",
+      "id": "oS5VdqbsH90"
+    },
+    {
+      "username": "moti.vationalquotes675",
+      "email": "nehansh100502@gmail.com",
+      "password": "snsd",
+      "id": "KxXuF49d1XI"
+    },
+    {
+      "username": "moti.vationalquotes675",
+      "email": "nehansh100502@gmail.com",
+      "password": "snsd",
+      "id": "tM5ivoz2tw4"
+    },
+    {
+      "username": "e1072258629",
+      "email": "nehansh100502@gmail.com",
+      "password": "ddddd.      sssssss sss",
+      "id": "lQefVT5e4bc"
+    }
+  ],
+  "$schema": "./node_modules/json-server/schema.json"
 }

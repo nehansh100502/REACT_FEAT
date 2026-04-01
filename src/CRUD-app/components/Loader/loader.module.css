@@ -1,0 +1,15 @@
+.loader{
+    height:80px;
+    width:80px;
+    border:10px solid #1cac91;
+    border-top:10px solid grey;
+    border-radius:50%;
+    animation-name:spinner;
+    animation-duration:1s;
+    animation-iteration-count:infinite;
+}
+@keyframes spinner{
+    to{
+        transform:rotate(360deg);
+    }
+}

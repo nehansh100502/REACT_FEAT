@@ -1,8 +1,11 @@
 import { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
+import axios from 'axios'
 
 const CreateUserPage = () => {
+    const navigate = useNavigate()
     const [formData, setFormData] = useState({
-        name: "",
+        username: "",
         email: "",
         password: ""
     })
@@ -15,24 +18,25 @@ const CreateUserPage = () => {
         console.log(formData);
         //? using fetch method send data to backend
         try {
-            let res = await fetch('http://localhost:3001/users', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    Authorization: `Bearer ${sessionStorage.getItem("token")}`
-                },
-                body: JSON.stringify(formData)
-            })
-            let data = await res.json()
-            console.log(data);
+            // let res = await fetch('http://localhost:3001/users', {
+            //     method: 'POST',
+            //     headers: {
+            //         'Content-Type': 'application/json',
+            //         Authorization: `Bearer ${sessionStorage.getItem("token")}`
+            //     },
+            //     body: JSON.stringify(formData)
+            // })
+            // let data = await res.json()
+            // console.log(data);
 
             {/** using Axios */ }
-            // let resp = await axios.post('http://localhost:3001/users', formData, {
-            //     headers: {
-            //         Authorization: `Bearer ${sessionStorage.getItem("token")}`
-            //     }
-            // })
-            // console.log(resp.data);
+            let resp = await axios.post('http://localhost:3001/users', formData, {
+                headers: {
+                    Authorization: `Bearer ${sessionStorage.getItem("token")}`
+                }
+            })
+            navigate('/all-users')
+            console.log(resp.data);
 
         } catch (err) {
             console.log(err);
@@ -52,7 +56,7 @@ const CreateUserPage = () => {
                 <form onSubmit={handleCreateUser} className='bg-white p-6 rounded-xl shadow-md w-full md:w-1/2'>
                     <div className='mb-4 flex flex-col gap-2'>
                         <label htmlFor='username'>UserName</label>
-                        <input type='text' id='username' name='username' placeholder='Enter Username' onChange={handleChange} value={formData.name} className=' border-2 border-sky-500' />
+                        <input type='text' id='username' name='username' placeholder='Enter Username' onChange={handleChange} value={formData.username} className=' border-2 border-sky-500' />
                     </div>
                     <div className='mb-4 flex flex-col gap-2'>
                         <label htmlFor='email'>Email</label>
