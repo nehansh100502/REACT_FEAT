@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <form id="myform">
+      <div>
+        <lable for="name">Name : </lable>
+        <input type="text" id="name" name="name" />
+      </div>
+      <br />
+      <br />
+      <div>
+        <lable for="email">Email : </lable>
+        <input type="email" id="email" name="email" />
+      </div>
+      <br />
+      <br />
+      <div>
+        <lable for="password">Password : </lable>
+        <input type="password" id="password" name="password" />
+      </div>
+      <div>
+        <button type="submit">LogIn</button>
+      </div>
+    </form>
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        // ✅ Runs AFTER full HTML is loaded =DOMContentLoaded
+
+        const form = document.getElementById("myform");
+        form.addEventListener("submit", (e) => {
+          e.preventDefault();
+
+          console.log(form.elements);
+          const name = document.getElementById("name").value;
+          const email = document.getElementById("email").value;
+          const password = document.getElementById("password").value;
+
+          const data = {
+            name,
+            email,
+            password,
+          };
+
+          // get multiple users with in an array
+          // Get existing array or start fresh
+          const user = JSON.parse(localStorage.getItem("UserAdd")) || [];
+          //add new user
+          user.push(data);
+          // Save back
+          localStorage.setItem("UserAdd", JSON.stringify(user));
+
+          // !localStorage can only store strings. It cannot store objects, arrays, or other data types directly.
+
+          // ❌ This doesn't work as expected
+          // localStorage.setItem("user", { name: "Alice", age: 25 });
+          // console.log(localStorage.getItem("user"));
+          // Output: "[object Object]"  ← useless!
+          // To store complex data structures, you need to convert them into a string format, such as JSON.
+
+          // ✅ Convert object → string, then store
+          //   localStorage.setItem("UserAdd", JSON.stringify(data));
+          console.log(localStorage.getItem("UserAdd"));
+
+          //         const stored = localStorage.getItem("user");
+          // // stored = '{"name":"Alice","age":25}'  ← still a string
+          // const user = JSON.parse(stored);
+          // // user = { name: "Alice", age: 25 }  ← back to object ✅
+          // console.log(user.name); // "Alice"
+        });
+      });
+      //   GET → PARSE → PUSH → STRINGIFY → SET
+
+      //
+    </script>
+  </body>
+</html>
