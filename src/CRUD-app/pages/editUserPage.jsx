@@ -1,10 +1,10 @@
-import { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useState, useEffect } from 'react'
+import { useNavigate, useParams, } from 'react-router-dom'
 import axios from 'axios'
 import toast from 'react-hot-toast'
 
-const CreateUserPage = () => {
-    const navigate = useNavigate()
+const EditUserPage = () => {
+
     const [formData, setFormData] = useState({
         username: "",
         email: "",
@@ -14,49 +14,50 @@ const CreateUserPage = () => {
         let { name, value } = e.target;
         setFormData({ ...formData, [name]: value })
     }
-    const handleCreateUser = async (e) => {
-        e.preventDefault()
-        console.log(formData);
-        //? using fetch method send data to backend
+    const navigate = useNavigate()
+    const params = useParams()
+
+    async function getEditUser() {
         try {
-            // let res = await fetch('http://localhost:3001/users', {
-            //     method: 'POST',
-            //     headers: {
-            //         'Content-Type': 'application/json',
-            //         Authorization: `Bearer ${sessionStorage.getItem("token")}`
-            //     },
-            //     body: JSON.stringify(formData)
-            // })
-            // let data = await res.json()
-            // console.log(data);
+            let respo = await axios.get(`http://localhost:3001/users/${params.id}`)
+            console.log(respo.data)
+            setFormData(respo.data)
+        } catch (error) {
+            console.log(error)
+            toast.error("something went wrong")
 
-            {/** using Axios */ }
-            let resp = await axios.post('http://localhost:3001/users', formData, {
-                headers: {
-                    Authorization: `Bearer ${sessionStorage.getItem("token")}`
-                }
-            })
-            toast.success("User Created Successfully...")
-            navigate('/all-users')
-            console.log(resp.data);
-
-        } catch (err) {
-            toast.success("Unable to delete User!")
-            console.log(err);
         }
+    }
+
+
+    useEffect(() => {
+        getEditUser()
+    }, [])
+
+    const handleUpdateUser = async (e) => {
+        e.preventDefault()
+        try {
+            let res = await axios.put(`http://localhost:3001/users/${params.id}`, formData)
+            toast.success("user Updated")
+            navigate('/all-users')
+            console.log(res)
+        } catch (error) {
+            console.log(error)
+        }
+        console.log(formData);
     }
     return (
         <div className="min-h-screen bg-gray-100 p-6">
             <div className="bg-white p-6 rounded-xl shadow-md mb-6">
                 <h1 className="text-3xl font-bold text-gray-800">
-                    CREATE Users
+                    Edit Users
                 </h1>
                 <p className="text-gray-500 mt-2">
-                    Create users here...
+                    Edit User here...!!!!!!
                 </p>
             </div>
             <article>
-                <form onSubmit={handleCreateUser} className='bg-white p-6 rounded-xl shadow-md w-full md:w-1/2'>
+                <form onSubmit={handleUpdateUser} className='bg-white p-6 rounded-xl shadow-md w-full md:w-1/2'>
                     <div className='mb-4 flex flex-col gap-2'>
                         <label htmlFor='username'>UserName</label>
                         <input type='text' id='username' name='username' placeholder='Enter Username' onChange={handleChange} value={formData.username} className=' border-2 border-sky-500' />
@@ -70,11 +71,11 @@ const CreateUserPage = () => {
                         <input type='password' id='password' name='password' placeholder='Enter password' onChange={handleChange} value={formData.password} className=' border-2 border-sky-500' />
                     </div>
                     <div className='mb-4 border-2 border-sky-500 w-24 text-black h-10 flex items-center justify-center rounded-md cursor-pointer'>
-                        <button type='submit'>Create User</button>
+                        <button type='submit'>Edit User</button>
                     </div>
                 </form>
             </article>
         </div>
     )
 }
-export default CreateUserPage;
+export default EditUserPage;

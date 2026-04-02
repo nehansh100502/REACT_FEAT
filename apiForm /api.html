@@ -15,6 +15,11 @@
 
         try {
           const response = await fetch(url);
+
+          if (!response.ok) {
+            throw new Error(`Response status: ${response.status}`);
+          }
+
           const data = await response.json();
           console.log(data);
 
@@ -32,7 +37,7 @@
 
             container.appendChild(div);
           });
-          localStorage.setItem("usersData", JSON.stringify(data.users));
+          localStorage.setItem();
         } catch (error) {
           console.error(error.message);
         }

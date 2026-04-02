@@ -1,5 +1,6 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
+import toast from 'react-hot-toast'
 
 const LogIn = () => {
 
@@ -27,7 +28,7 @@ const LogIn = () => {
         console.log(payload)
         sessionStorage.setItem("user", JSON.stringify(formData))
         sessionStorage.setItem("token", "dummy-token")
-
+        toast.success("Login successful!")
         navigate('/')
     }
 
