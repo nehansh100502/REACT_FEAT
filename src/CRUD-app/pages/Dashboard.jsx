@@ -13,8 +13,6 @@ const Dashboard = () => {
 
     //! debounced query 
     let debouncedQuery = useDebounce(query, 2000)
-
-
     //! calling custom hooks using state varible 
     let { posts, loading } = usePosts({ query: debouncedQuery, sortBy, skip })
     console.log("query:", query);

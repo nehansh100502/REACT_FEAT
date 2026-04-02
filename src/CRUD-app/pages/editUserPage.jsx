@@ -41,6 +41,7 @@ const EditUserPage = () => {
             toast.success("user Updated")
             navigate('/all-users')
             console.log(res)
+
         } catch (error) {
             console.log(error)
         }
