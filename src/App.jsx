@@ -30,6 +30,8 @@ import Routing from './Routing.jsx'
 // import ReduxCounter from './AllTopics/Redux/reduxCounter.jsx'
 import Virtualization from './AllTopics/Virtualization/virtualisedList.jsx'
 import CrudApp from './CRUD-app/CrudApp.jsx'
+import ErrorCounter from "./AllTopics/ErrrorBoundary/counter.jsx";
+import ErrorBoundaryCBC from './AllTopics/ErrrorBoundary/ErrorBoundaryCBC.jsx'
 const App = () => {
     // const [toggle, setToggle] = useState(false)
     // const handleToggle = () => setToggle((prev) => !prev)
@@ -73,7 +75,12 @@ const App = () => {
             {/* <Routing /> */}
             {/* // <ReduxCounter /> */}
             {/* <Virtualization /> */}
-            <CrudApp />
+            {/* <CrudApp /> */}
+
+            <ErrorBoundaryCBC>
+                <ErrorCounter />
+            </ErrorBoundaryCBC>
+
         </>
     )
 }

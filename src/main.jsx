@@ -11,11 +11,13 @@ import './index.css'
 import HeaderComp from "./components /HeaderComp";
 // import themeChange from "./AllTopics/States/ThemeChange";
 import "./style.css";
+import CodeSplit from '../src/AllTopics/CodeSplitting/codeSpilt.jsx'
 
 createRoot(document.getElementById("root")).render(
 
     <>
         {/* <HeaderComp /> */}
+        {/* <CodeSplit /> */}
         <App />
         {/* <themeChange /> */}
 
